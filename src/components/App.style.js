@@ -3,9 +3,14 @@ import { styled } from '@mui/system';
 
 
 export const Container = styled('div')({
-     
-  });
-
-export const HeaderContainer = styled('div')({
-    marginTop: '1%',
+    color: 'darkslategray',
+    backgroundColor: 'aliceblue',
+    padding: 8,
+    borderRadius: 4,
 });
+   
+
+
+
+
+    
