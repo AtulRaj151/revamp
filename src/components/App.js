@@ -1,5 +1,5 @@
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route,useLocation } from 'react-router-dom';
 import { Container } from './App.style';
 import  { HOME_PATH, LOGIN_PATH } from '../helper/routes'
 import { HeaderContainer } from './App.style';
@@ -8,13 +8,13 @@ import DashBoard from './dashBoard/DashBoard';
 import Login from './login/Login';
 
 
-function App() {
+function App(props) {
+  const { pathname } = useLocation();
   return (
     <Container className="App">
-      <HeaderContainer data-testid="header-container">
+      {pathname !== '/login' && (<HeaderContainer data-testid="header-container">
          <Header/>
-      </HeaderContainer>
-
+      </HeaderContainer>) }
       <Routes>
          <Route path={HOME_PATH} element={<DashBoard/>} />
          <Route path={LOGIN_PATH} element={<Login/>} />

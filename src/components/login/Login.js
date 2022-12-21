@@ -1,5 +1,5 @@
 import React from 'react'
-import {LoginContainer, Heading, Logo, Text, LoginBox, BoxHeader, BoxContent, LoginContent } from './Login.style'
+import {LoginContainer, Heading, Logo, Text, LoginBox, BoxHeader, BoxContent } from './Login.style'
 
 
 const Login = () => {
