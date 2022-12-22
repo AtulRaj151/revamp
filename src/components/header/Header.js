@@ -40,7 +40,7 @@ const Header = ()=> {
   }
 
   return (
-    <AppBarContainer>
+    <AppBarContainer data-component="header-component">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
