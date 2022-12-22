@@ -1,18 +1,24 @@
+import { Directions } from '@mui/icons-material';
 import { styled } from '@mui/material'
-import TextField from '@mui/material/TextField';
+
 
 
 
 export const LoginContainer = styled('div')({
-   width: "500px",
+   maxWidth: "480px",
    marginInline: "auto",
-   textAlign: "center",
+   marginTop: "30px",
+   textAlign: 'center'
+
 });
 
 export const Logo = styled('h2')({
-    padding: "60px 0 20px", 
-    fontSize: "45px",
+    padding: "85px 0 15px", 
+    fontSize: "48px",
+   
 });
+
+
 
 export const Heading = styled('h2')({
     fontWeight: 'bold',
@@ -25,8 +31,7 @@ export const Text = styled('p')({
 });
 
 export const LoginBox = styled('div')({
-    display: "flex",
-    direction: "column",
+
     background: "white",
     boxShadow: "0 6px 16px 0 rgb(0 0 0 / 20%)",
 });
@@ -34,6 +39,9 @@ export const LoginBox = styled('div')({
 export const BoxHeader = styled('div')({
     display: "flex",
     width: "100%",
+    cursor: "pointer",
+   
+    
 });
 
 export const BoxContent = styled('p')({
@@ -41,10 +49,13 @@ export const BoxContent = styled('p')({
     fontSize: "18px",
     fontWeight: 700,
     lineHeight: "60px",
+    "&:hover": {
+        background: "#f9fbfb",
+        boxShadow: "inset rgba(17, 17, 26, 0.1) 0px 1px 0px",
+    }
+      
+    
 });
 
-export const LoginInputs = styled(TextField)({
-    marginTop: "20px",
-    border: '1px solid gray',
-    width: "100%",
-});
+
+
