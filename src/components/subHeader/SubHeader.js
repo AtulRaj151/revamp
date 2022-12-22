@@ -8,8 +8,12 @@ const SubHeader = () => {
     const location = useLocation();
     const [ breadcrumbs, setBreadCrumbs ] = useState({});
     useEffect(()=> {
-       const path =  PAGES_MAPPING.filter((item)=> (item.path === location.pathname));
-        setBreadCrumbs(path[0])
+       if(location.pathname !== '/'){
+        const path =  PAGES_MAPPING.filter((item)=> (item.path === location.pathname));
+        setBreadCrumbs(path[0]);
+       }else{
+        setBreadCrumbs(PAGES_MAPPING[0]);
+       }
     },[location])
     return (
     <Wrapper data-testid="subHeader-container">
