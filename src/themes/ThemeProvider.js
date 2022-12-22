@@ -3,7 +3,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const ThemeContextProvider = ({ children }) => {
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
     const theme = useMemo(
         () =>
           createTheme({
