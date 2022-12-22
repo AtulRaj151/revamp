@@ -11,14 +11,15 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useNavigate }  from 'react-router-dom'
+import { pages, settings }  from '../../constants'
+import { HOME_PATH, PAGES_PATH_LIST } from '../../helper/routes';
 import { AppBarContainer } from './Header.style';
-
-const pages = ['PREPARE', 'CERTIFY', 'COMPETE'];
-const settings = ['Profile', 'LeaderBoard', 'Setting', 'Bookmarks', 'Network', 'Submissions','Logout'];
 
 const Header = ()=> {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -34,6 +35,9 @@ const Header = ()=> {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleClickPageMenu = (e) => {
+    navigate(PAGES_PATH_LIST[parseInt(e.target.id,10)-1])
+  }
 
   return (
     <AppBarContainer>
@@ -45,6 +49,7 @@ const Header = ()=> {
             noWrap
             component="a"
             href="/"
+            onClick={()=>navigate(HOME_PATH)}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -87,9 +92,9 @@ const Header = ()=> {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page,index) => (
+                <MenuItem key={page}  onClick={handleClickPageMenu}>
+                  <Typography  id={index + 1} textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -110,15 +115,17 @@ const Header = ()=> {
               color: 'inherit',
               textDecoration: 'none',
             }}
+            onClick={()=>navigate(HOME_PATH)}
           >
             Revamp
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page,index) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={handleClickPageMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                id={index+1}
               >
                 {page}
               </Button>

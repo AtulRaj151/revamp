@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { Container } from './Certify.style';
 
 const Certify = ()=> {
     return (
-        <div>
+        <Container>
             Certify
-        </div>
+        </Container>
     )
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { Container } from './Prepare.style';
 
 const Prepare = ()=> {
     return (
-        <div>
+        <Container>
             Prepare
-        </div>
+        </Container>
     )
 }
 

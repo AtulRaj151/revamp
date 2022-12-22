@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { Container } from './Compete.style';
 
 const Compete = ()=> {
     return (
-        <div>
+        <Container>
             Compete
-        </div>
+        </Container>
     )
 }
 
