@@ -16,6 +16,9 @@ const ThemeContextProvider = ({ children }) => {
               secondary: {
                 main: '#1ba94c',
               },
+              text: {
+                breadcrumb: '#738f93'
+              }
             }
           }),
         [prefersDarkMode],
