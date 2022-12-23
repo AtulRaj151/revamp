@@ -1,5 +1,12 @@
 import { styled } from '@mui/system';
 
 export const ParentWrapper = styled('div')({
-   marginTop: '58px'
+   margin: '185px 20px 0',
+   flexGrow: '1'
 });
+
+export const ButtonExplore = styled('div')({
+    fontSize: '13px',
+    height: '56px',
+    marginTop: '16px'
+})
