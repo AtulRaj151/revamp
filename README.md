@@ -1,14 +1,14 @@
-
 ### Built With
 
-* ![React.js]
+- ![React.js]
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 ### Prerequisites
 
-* npm
+- npm
   ```sh
   npm install --global yarn
   ```
@@ -19,12 +19,13 @@
    ```sh
    git clone https://github.com/AtulRaj151/revamp.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    yarn install
    ```
-4. Start locally
-    ```sh
+3. Start locally
+   ```sh
    yarn start
    ```
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+   [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+   ```
