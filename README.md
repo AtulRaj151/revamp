@@ -12,6 +12,10 @@
   ```sh
   npm install --global yarn
   ```
+ - format
+    ```sh
+    yarn run format
+  ```
 
 ### Installation
 
