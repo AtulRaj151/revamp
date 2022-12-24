@@ -1,11 +1,6 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import DashBoardGridSection from "./GridSection/DashBoardSectionGrid";
-import Container from "@mui/material/Container";
-import { ParentWrapper, ButtonExplore } from "./DashBoard.style";
-import { DashBoardGridView } from "./GridSection/DashBoardSectionGrid.style";
+import { ParentWrapper } from "./DashBoard.style";
 import MyPreparationTrack from "./GridSection/MyPreparationTrackCard";
 import CertificationCard from "./GridSection/CertificationCard";
 

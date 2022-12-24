@@ -5,23 +5,27 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@monaco-editor/react": "^4.4.6",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.0",
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@mui/styled-engine-sc": "^5.11.0",
+    "ace-builds": "^1.14.0",
     "cra-template": "1.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
+    "react-split-pane": "^0.1.92",
     "styled-components": "^5.3.6"
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
   },
   "scripts": {
-    "format":"yarn prettier --write ./src/*",
+    "format": "yarn prettier --write ./src/*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

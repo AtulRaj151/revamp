@@ -49,7 +49,6 @@ const CertificationCard = ({ certificationName, info }) => {
             variant="h3"
             sx={{
               marginBottom: 2,
-              fontSize: 26,
               lineHeight: 1.2,
               fontWeight: 700,
               fontSize: {
@@ -95,7 +94,6 @@ const CertificationCard = ({ certificationName, info }) => {
               sx={{
                 height: 40,
                 border: "2px solid",
-                fontSize: 12,
                 fontWeight: 700,
                 fontSize: {
                   lg: 12,

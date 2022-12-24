@@ -6,6 +6,7 @@ import {
   PREPARE_PATH,
   CERTIFY_PATH,
   COMPETE_PATH,
+  EDITOR_PATH,
 } from "../helper/routes";
 import { HeaderContainer } from "./App.style";
 import Header from "./header/Header";
@@ -15,15 +16,16 @@ import Prepare from "./prepare/Prepare";
 import Certify from "./certify/Certify";
 import Compete from "./compete/Compete";
 import SubHeader from "./subHeader/SubHeader";
+import CodeEditor from "./editor/CodeEditor";
 
-function App(props) {
+function App() {
   const { pathname } = useLocation();
   return (
     <Container className="App" data-testid="app-container">
       {pathname !== "/login" && (
         <HeaderContainer data-testid="header-container">
           <Header />
-          <SubHeader />
+          {pathname !== "/editor" && <SubHeader />}
         </HeaderContainer>
       )}
       <Routes>
@@ -32,6 +34,7 @@ function App(props) {
         <Route path={PREPARE_PATH} element={<Prepare />} />
         <Route path={CERTIFY_PATH} element={<Certify />} />
         <Route path={COMPETE_PATH} element={<Compete />} />
+        <Route path={EDITOR_PATH} element={<CodeEditor />} />
       </Routes>
     </Container>
   );

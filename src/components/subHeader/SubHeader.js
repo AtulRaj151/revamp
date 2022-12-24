@@ -5,8 +5,8 @@ import {
   BreadCrumbsContainer,
   BreadCrumbsSubHeading,
 } from "./SubHeader.style";
-import { Breadcrumbs, Typography } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import { PAGES_MAPPING } from "../../helper/routes";
 const SubHeader = () => {
   const location = useLocation();
@@ -16,6 +16,9 @@ const SubHeader = () => {
       const path = PAGES_MAPPING.filter(
         (item) => item.path === location.pathname
       );
+      if (!path.length) {
+        return;
+      }
       setBreadCrumbs(path[0]);
     } else {
       setBreadCrumbs(PAGES_MAPPING[0]);

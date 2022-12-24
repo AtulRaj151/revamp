@@ -2,7 +2,6 @@ import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { ButtonExplore } from "../DashBoard.style";
-import DashBoardGridSection from "./DashBoardSectionGrid";
 import { DashBoardGridView } from "./DashBoardSectionGrid.style";
 
 const MyPreparationTrack = ({
@@ -46,7 +45,6 @@ const MyPreparationTrack = ({
             variant="h3"
             sx={{
               marginBottom: 2,
-              fontSize: 26,
               lineHeight: 1.2,
               fontWeight: 700,
               fontSize: {
@@ -83,7 +81,6 @@ const MyPreparationTrack = ({
               sx={{
                 height: 1,
                 border: "2px solid",
-                fontSize: 16,
                 fontWeight: 800,
                 fontSize: {
                   lg: 16,

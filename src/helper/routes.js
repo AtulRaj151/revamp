@@ -6,6 +6,7 @@ export const LOGOUT_PATH = `${BASE_PATH}/logout`;
 export const PREPARE_PATH = `${BASE_PATH}/prepare`;
 export const CERTIFY_PATH = `${BASE_PATH}/certify`;
 export const COMPETE_PATH = `${BASE_PATH}/compete`;
+export const EDITOR_PATH = `${BASE_PATH}/editor`;
 export const PAGES_PATH_LIST = [
   `${PREPARE_PATH}`,
   `${CERTIFY_PATH}`,
