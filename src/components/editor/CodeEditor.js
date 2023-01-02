@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Container, TextField } from "@mui/material";
+import { Container } from "@mui/material";
 import SplitPane from "react-split-pane";
-import Checkbox from "@mui/material/Checkbox";
-import TextareaAutosize from "@mui/base/TextareaAutosize";
+import OutputView from "./OutputView";
 
 import EditorLayout from "./EditorLayout";
-import { CustomTestCaseWrapper } from "./CodeEditor.style";
+import CustomTestCase from "./CustomTestCase";
 
 const Editor = () => {
   const [isCustomTest, setIsCustomTest] = useState(false);
@@ -13,9 +12,15 @@ const Editor = () => {
     <Container
       sx={{
         marginTop: 10,
+        height: "100vh",
       }}
     >
-      <SplitPane split="vertical" minSize={50} defaultSize="40%">
+      <SplitPane
+        split="vertical"
+        minSize={50}
+        defaultSize="40%"
+        style={{ height: "auto" }}
+      >
         <Container
           sx={{
             width: 1 / 2,
@@ -29,25 +34,19 @@ const Editor = () => {
           }}
         >
           <EditorLayout />
-          <Checkbox
-            color="success"
-            checked={isCustomTest}
-            onClick={() => {
-              setIsCustomTest(!isCustomTest);
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
             }}
-          />
-          <span>Custom Testcase</span>
+          >
+            <CustomTestCase
+              isCustomTest={isCustomTest}
+              setIsCustomTest={setIsCustomTest}
+            />
 
-          {isCustomTest && (
-            <CustomTestCaseWrapper>
-              <TextField
-                id="outlined-multiline-static"
-                label="testcase"
-                multiline
-                rows={4}
-              />
-            </CustomTestCaseWrapper>
-          )}
+            <OutputView />
+          </Container>
         </Container>
       </SplitPane>
     </Container>
