@@ -24,14 +24,21 @@ const Editor = () => {
         <Container
           sx={{
             width: 1 / 2,
+            height:'100vh',
+            overflowY:'scroll'
           }}
+          data-testid="problem-section"
         >
           Problems
         </Container>
         <Container
           sx={{
             padding: 2,
+            height:'100vh',
+            overflowY:'scroll'
+
           }}
+          data-testid="editor-section"
         >
           <EditorLayout />
           <Container

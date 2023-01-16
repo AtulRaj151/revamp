@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import AceEditor from "react-ace";
@@ -8,6 +8,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
+import {IDE_BASE_URL, GET_LANGUAGE} from '../../config/config'
+import axios from "axios";
+
 
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
@@ -17,12 +20,29 @@ import "./CodeEditor.style.css";
 
 const EditorLayout = () => {
   const [language, setLanguage] = useState("javascript");
+  const [isCompiling, setIsCompiling] = useState(false);
+  const [allLanguages, setAllLanguage] = useState([]);
   function onChange(newValue) {
     console.log("change", newValue);
   }
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
   };
+  const handleCompileAndTest = () => {
+    setIsCompiling(true);
+    setTimeout(()=>{
+      setIsCompiling(false);
+    },5000);
+  }
+  const fetchLanguage = () => {
+     axios.get(GET_LANGUAGE).then((response)=> {
+      setAllLanguage(response?.data)
+      console.log(response?.data)
+     })
+  }
+  useEffect(()=> {
+    fetchLanguage();
+  },[])
   return (
     <>
       <Box
@@ -53,11 +73,18 @@ const EditorLayout = () => {
               label="javascript"
               onChange={handleLanguageChange}
             >
-              <MenuItem value="javascript" defaultChecked>
+
+              {allLanguages.map((item)=> {
+                         return (<MenuItem value="javascript" defaultChecked>
+                         {item?.name}
+                       </MenuItem>)
+              })}
+
+              {/* <MenuItem value="javascript" defaultChecked>
                 javascript
               </MenuItem>
               <MenuItem value="java">java</MenuItem>
-              <MenuItem value="c++">c++</MenuItem>
+              <MenuItem value="c++">c++</MenuItem> */}
             </Select>
           </FormControl>
         </Paper>
@@ -119,7 +146,7 @@ const EditorLayout = () => {
             sx={{ width: "27%", marginTop: "10px", height: 40 }}
             color="success"
           >
-            Compile and Test
+           {isCompiling ? (<p>Compiling...</p>) : (<p onClick={handleCompileAndTest}>Compile and Test</p>)} 
           </Button>
         </Paper>
       </Box>
