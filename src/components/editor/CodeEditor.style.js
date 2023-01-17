@@ -8,6 +8,7 @@ export const CustomTestCaseWrapper = styled("div")({
 export const OutputTextWrapper = styled("p")({
   margin: 1,
   padding: 2,
+  whiteSpace: 'pre-line'
 });
 
 export const ResultBlockTimeContainer = styled("div")({

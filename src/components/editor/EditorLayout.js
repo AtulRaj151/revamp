@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import {IDE_BASE_URL, GET_LANGUAGE} from '../../config/config'
+import {GET_LANGUAGE,FIRST_SUBMISSION_URL, getSubmissionDetails} from '../../config/config'
 import axios from "axios";
 
 
@@ -18,21 +18,54 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 import "./CodeEditor.style.css";
 
-const EditorLayout = () => {
-  const [language, setLanguage] = useState("javascript");
+const EditorLayout = ({ setOutput }) => {
+  const [language, setLanguage] = useState('');
   const [isCompiling, setIsCompiling] = useState(false);
   const [allLanguages, setAllLanguage] = useState([]);
-  function onChange(newValue) {
-    console.log("change", newValue);
+  const [codeInput, setCodeInput] = useState('');
+  const [ stdin, setStdin] = useState('');
+  const [isCompileAndTestAcitve,setIsCompileAndTestActive] = useState(false);
+  const onChange = (newValue) => {
+     setCodeInput(newValue);
   }
-  const handleLanguageChange = (event) => {
+  const handleLanguageChange = async (event) => {
+    console.log("language id", event.target)
     setLanguage(event.target.value);
   };
-  const handleCompileAndTest = () => {
+  const handleCompileAndTest = async () => {
+    if(codeInput != '' && language != '') {
+      const request = {
+        "source_code": `${codeInput}`,
+        "language_id": `${language?.id}`,
+        "stdin": `${stdin}`,
+        "number_of_runs": 1,
+      }
+        await axios.post(FIRST_SUBMISSION_URL,request)
+        .then(({data})=>{
+          if(localStorage.getItem('myrecentcode')) {
+               localStorage.removeItem('myrecentcode')
+          }
+          localStorage.setItem("myrecentcode", data?.token);
+        })
+        setTimeout(()=> {
+           fetchSubmissionDetail();
+        },2000)
+    
+    }
     setIsCompiling(true);
     setTimeout(()=>{
       setIsCompiling(false);
     },5000);
+
+  }
+  const fetchSubmissionDetail = ()=> {
+         const token = localStorage.getItem('myrecentcode');
+         console.log("this is token",token)
+          const url = getSubmissionDetails(token);
+          axios.get(url)
+          .then(({data})=> {
+            setOutput({...data,language: language, stdin:stdin });
+          })
   }
   const fetchLanguage = () => {
      axios.get(GET_LANGUAGE).then((response)=> {
@@ -40,6 +73,7 @@ const EditorLayout = () => {
       console.log(response?.data)
      })
   }
+  console.log(language)
   useEffect(()=> {
     fetchLanguage();
   },[])
@@ -65,26 +99,20 @@ const EditorLayout = () => {
           }}
         >
           <FormControl sx={{ minWidth: 175, marginRight: 4 }} size="small">
-            <InputLabel id="demo-select-small">select language</InputLabel>
+            <InputLabel id="demo-select-small">{language == '' ? 'Select Language': language?.name}</InputLabel>
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
-              value={language}
+              value={language?.name}
               label="javascript"
               onChange={handleLanguageChange}
             >
 
               {allLanguages.map((item)=> {
-                         return (<MenuItem value="javascript" defaultChecked>
+                         return (<MenuItem value={item} key={item?.id} >
                          {item?.name}
                        </MenuItem>)
               })}
-
-              {/* <MenuItem value="javascript" defaultChecked>
-                javascript
-              </MenuItem>
-              <MenuItem value="java">java</MenuItem>
-              <MenuItem value="c++">c++</MenuItem> */}
             </Select>
           </FormControl>
         </Paper>
@@ -92,7 +120,7 @@ const EditorLayout = () => {
 
       <AceEditor
         placeholder="Enter here your code"
-        mode="javascript"
+        mode={language?.name.split('')[0].toLowerCase()}
         theme="monokai"
         fontSize={14}
         width="100%"
@@ -101,9 +129,7 @@ const EditorLayout = () => {
         showGutter={true}
         highlightActiveLine={true}
         onChange={onChange}
-        value={`function onLoad(editor) {
-  console.log("i've loaded");
-}`}
+        value={codeInput}
         name="UNIQUE_ID_OF_DIV"
         editorProps={{ $blockScrolling: true }}
         setOptions={{

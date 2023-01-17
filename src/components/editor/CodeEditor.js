@@ -8,6 +8,7 @@ import CustomTestCase from "./CustomTestCase";
 
 const Editor = () => {
   const [isCustomTest, setIsCustomTest] = useState(false);
+  const [output,setOutput] = useState(null);
   return (
     <Container
       sx={{
@@ -40,7 +41,7 @@ const Editor = () => {
           }}
           data-testid="editor-section"
         >
-          <EditorLayout />
+          <EditorLayout  setOutput={setOutput}/>
           <Container
             sx={{
               display: "flex",
@@ -52,7 +53,7 @@ const Editor = () => {
               setIsCustomTest={setIsCustomTest}
             />
 
-            <OutputView />
+            <OutputView output={output} />
           </Container>
         </Container>
       </SplitPane>

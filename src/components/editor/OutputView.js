@@ -6,7 +6,7 @@ import {
   ResultBlockTimeContainer,
 } from "./CodeEditor.style";
 
-const OutputView = () => {
+const OutputView = ({output}) => {
   return (
     <Container
       data-testid="output-view-container"
@@ -25,19 +25,19 @@ const OutputView = () => {
           <OutputTextWrapper>
             <b>Time(Sec)</b>
           </OutputTextWrapper>
-          <OutputTextWrapper>249234</OutputTextWrapper>
+          <OutputTextWrapper>{output?.time}</OutputTextWrapper>
         </div>
         <div data-tesid="memory">
           <OutputTextWrapper>
             <b>Memory(KiB)</b>
           </OutputTextWrapper>
-          <OutputTextWrapper>2</OutputTextWrapper>
+          <OutputTextWrapper>{output?.memory}</OutputTextWrapper>
         </div>
         <div data-tesid="langauge">
           <OutputTextWrapper>
             <b>language</b>
           </OutputTextWrapper>
-          <OutputTextWrapper>C</OutputTextWrapper>
+          <OutputTextWrapper>{output?.language?.name}</OutputTextWrapper>
         </div>
       </ResultBlockTimeContainer>
       <Divider sx={{ margin: 1 }} />
@@ -45,7 +45,7 @@ const OutputView = () => {
         <OutputTextWrapper>
           <b>Input</b>
         </OutputTextWrapper>
-        <OutputTextWrapper>1</OutputTextWrapper>
+        <OutputTextWrapper>{output?.stdin}</OutputTextWrapper>
         <OutputTextWrapper>2 3</OutputTextWrapper>
       </Container>
       <Divider sx={{ margin: 1 }} />
@@ -53,7 +53,7 @@ const OutputView = () => {
         <OutputTextWrapper>
           <b>Output</b>
         </OutputTextWrapper>
-        <OutputTextWrapper>4</OutputTextWrapper>
+        <OutputTextWrapper>{output?.stdout}</OutputTextWrapper>
       </Container>
       <Divider sx={{ margin: 1 }} />
       <Container data-testid="expected-output" sx={{ marginBottom: "8px" }}>
